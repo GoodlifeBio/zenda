@@ -1,0 +1,381 @@
+/* ============================================= */
+/* NEW HORIZON — Dark / Light Mode               */
+/* ============================================= */
+
+/* ─── Dark theme (only) ────────────────────── */
+:root {
+  --bg: #050505;
+  --bg-alpha: transparent;
+  --text: #f9fafb;       /* near-white for strong contrast */
+  --text-mid: #e5e7eb;   /* light gray */
+  --text-light: #9ca3af; /* softer gray */
+  --rule: rgba(255, 255, 255, 0.16);
+  --link-border: rgba(255, 255, 255, 0.2);
+  --serif: 'Arial Nova Light', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --sans: 'Arial Nova Light', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+body.dark {
+  /* keep values identical so toggling has no visual effect */
+  --bg: #050505;
+  --bg-alpha: transparent;
+  --text: #f9fafb;
+  --text-mid: #e5e7eb;
+  --text-light: #9ca3af;
+  --rule: rgba(255, 255, 255, 0.16);
+  --link-border: rgba(255, 255, 255, 0.2);
+}
+
+/* ─── Reset ─────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--sans);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 17px;
+  line-height: 1.8;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background 0.5s ease, color 0.5s ease;
+}
+
+::selection {
+  background: var(--text);
+  color: var(--bg);
+}
+
+#waves-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  background-color: var(--bg);
+  transition: background-color 0.5s ease;
+}
+
+/* No animated background layers; static dark background only */
+
+/* ─── Links ─────────────────────────────────── */
+
+a {
+  color: var(--text);
+  text-decoration: none;
+  transition: opacity 0.3s, color 0.5s;
+}
+
+a:hover {
+  opacity: 0.7;
+}
+
+/* ─── Header ────────────────────────────────── */
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 1.5rem 3rem;
+  background: transparent;
+  pointer-events: auto;
+  transition: background 0.5s ease;
+}
+
+.logo {
+  display: block;
+  margin-bottom: 2rem;
+  font-family: var(--serif);
+  font-size: 3rem;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  transition: color 0.5s;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.nav a {
+  font-size: 0.82rem;
+  font-weight: 400;
+  color: var(--text-light);
+  border-bottom: none;
+  letter-spacing: 0.01em;
+  transition: color 0.3s;
+}
+
+.nav a:hover {
+  color: var(--text);
+}
+
+/* ─── Theme toggle ──────────────────────────── */
+
+.theme-toggle {
+  background: none;
+  border: 1px solid var(--rule);
+  color: var(--text-light);
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.7rem;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: color 0.3s, border-color 0.3s;
+}
+
+.theme-toggle:hover {
+  color: var(--text);
+  border-color: var(--text);
+}
+
+/* ─── Main content column ───────────────────── */
+
+main {
+  position: relative;
+  z-index: 1;
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* ─── Hero ──────────────────────────────────── */
+
+.hero {
+  padding-top: 100px;
+  padding-bottom: 2rem;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+.hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(1.8rem, 4.5vw, 3.5rem);
+  font-weight: 200;
+  line-height: 1.2;
+  letter-spacing: 0.15em;
+  word-break: keep-all;
+  overflow-wrap: normal;
+  margin-bottom: 1rem;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+  color: #ffffff;
+  text-transform: uppercase;
+  transition: all 1s ease-out;
+}
+
+.hero h1.splitting span.char {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: all 0.5s ease-out;
+}
+
+.hero h1.splitting.visible span.char {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hero-sub {
+  font-size: 1.1rem;
+  font-weight: 300;
+  letter-spacing: 0.3em;
+  line-height: 1.85;
+  color: #ffffff;
+  text-transform: uppercase;
+  max-width: 800px;
+  margin: 0 auto;
+  opacity: 0;
+  transform: translateY(10px);
+  filter: blur(4px);
+  transition: all 1s ease-out 1.5s;
+}
+
+.hero-sub.visible {
+  opacity: 0.6;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+/* ─── Horizontal rules ──────────────────────── */
+
+hr {
+  border: none;
+  height: 1px;
+  background: var(--rule);
+  margin: 0;
+  transition: background 0.5s;
+}
+
+/* ─── Content blocks ────────────────────────── */
+
+.block {
+  padding: 4.5rem 0;
+}
+
+.block h2 {
+  font-family: var(--serif);
+  font-size: clamp(1.2rem, 2.5vw, 1.7rem);
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  line-height: 1.35;
+  word-break: keep-all;
+  overflow-wrap: normal;
+  margin-bottom: 2rem;
+  color: var(--text-mid);
+  transition: color 0.5s;
+}
+
+.block>p {
+  font-size: 1rem;
+  line-height: 1.85;
+  color: var(--text-mid);
+  margin-bottom: 1.3rem;
+  transition: color 0.5s;
+}
+
+.block>p:last-child {
+  margin-bottom: 0;
+}
+
+.block>p a {
+  color: var(--text);
+  font-weight: 500;
+}
+
+/* ─── Essay block ───────────────────────────── */
+
+.essay-block {
+  padding: 2.5rem 0;
+}
+
+.essay-block h2 {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  color: var(--text-mid);
+}
+
+.essay-block h2 em {
+  color: var(--text-mid);
+}
+
+.essay-block > p {
+  font-size: 0.85rem;
+  font-weight: 300;
+  line-height: 1.65;
+  color: var(--text-mid);
+  margin-bottom: 1rem;
+}
+
+@media (min-width: 768px) {
+  .essay-block {
+    width: 120%;
+    margin-left: -10%;
+  }
+}
+
+/* ─── Items (infrastructure list) ───────────── */
+
+.item {
+  margin-top: 2.5rem;
+}
+
+.item:first-of-type {
+  margin-top: 2rem;
+}
+
+.item h3 {
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.01em;
+  transition: color 0.5s;
+}
+
+.item p {
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: var(--text-mid);
+  transition: color 0.5s;
+}
+
+/* ─── Footer ────────────────────────────────── */
+
+.footer {
+  position: relative;
+  z-index: 1;
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 3rem 2rem 4rem;
+  font-size: 0.78rem;
+  color: var(--text-light);
+  transition: color 0.5s;
+}
+
+/* ─── Scroll reveal ─────────────────────────── */
+
+.block {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.8s ease, transform 0.8s ease, color 0.5s;
+}
+
+.block.visible,
+.hero.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── Responsive ────────────────────────────── */
+
+@media (max-width: 640px) {
+  .header {
+    padding: 1.2rem 1.5rem;
+  }
+
+  main {
+    padding: 0 1.5rem;
+  }
+
+  .hero {
+    padding-top: 140px;
+    padding-bottom: 3.5rem;
+  }
+
+  .block {
+    padding: 3rem 0;
+  }
+
+  .footer {
+    padding: 2.5rem 1.5rem 3rem;
+  }
+
+  .nav {
+    gap: 1rem;
+  }
+}

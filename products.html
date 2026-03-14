@@ -4,9 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact | New Horizon</title>
+  <title>Products | New Horizon</title>
   <meta name="description"
-    content="Collaborate with New Horizon. Share insights and provide feedback that directly shapes our agents' research trajectories.">
+    content="The tools and platforms we build to accelerate scientific discovery.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -15,6 +15,21 @@
   <link rel="stylesheet" href="src/styles.css">
   <style>
     .nav a.active { color: var(--text); }
+    .product-list { margin-top: 4rem; }
+    .product-card { 
+      padding: 2rem; 
+      border: 1px solid rgba(255, 255, 255, 0.1); 
+      margin-bottom: 2rem; 
+      transition: all 0.3s ease;
+      cursor: pointer;
+      text-decoration: none;
+      display: block;
+      color: inherit;
+    }
+    .product-card:hover {
+      border-color: var(--accent);
+      background: rgba(255, 255, 255, 0.02);
+    }
   </style>
 </head>
 
@@ -31,9 +46,9 @@
     <nav class="nav">
       <a href="index.html">Home</a>
       <a href="about.html">About</a>
-      <a href="products.html">Products</a>
+      <a href="products.html" class="active">Products</a>
       <a href="blog.html">Blog</a>
-      <a href="contact.html" class="active">Contact</a>
+      <a href="contact.html">Contact</a>
     </nav>
     <div class="technical-info">
       <span>London, UK</span>
@@ -43,30 +58,22 @@
 
   <main>
     <section class="hero">
-      <h1>Contact</h1>
-      <p class="hero-sub">Work with us</p>
+      <h1>Products</h1>
+      <p class="hero-sub">Infrastructure for the next century of science.</p>
     </section>
 
-    <section class="block essay-block">
-      <div class="founders-container">
-        <div class="founders-label">Founders</div>
-        <div class="founder-grid">
-          <div class="founder-card">
-            <div class="founder-name">Sambhab Mishra</div>
-            <div class="founder-role">Co-founder</div>
-          </div>
-          <div class="founder-card">
-            <div class="founder-name">Ishaan Sinha</div>
-            <div class="founder-role">Co-founder</div>
-          </div>
-        </div>
+    <section class="block product-list">
+      <a href="products/vri.html" class="product-card">
+        <h2>Virtual Research Institute (VRI)</h2>
+        <p>A comprehensive environment for autonomous research, hypothesis generation, and experimental design at scale.</p>
+        <span class="view-more">Explore VRI →</span>
+      </a>
+      
+      <!-- Placeholder for future products -->
+      <div class="product-card" style="opacity: 0.5; cursor: default;">
+        <h2>Azmuth</h2>
+        <p>Coming Soon</p>
       </div>
-    </section>
-
-    <section class="block essay-block">
-      <h2>Work with us. Talk to us.</h2>
-      <p>We are a small, focused team building something that has not existed before. If you are a researcher, institution, or fellow builder interested in acceleration of scientific research and discovery, we want to hear from you.</p>
-      <p><a href="mailto:hello@nhlabs.xyz">hello@nhlabs.xyz</a></p>
     </section>
   </main>
 

@@ -1,9 +1,10 @@
 /* ─── Variables ─────────────────────────────── */
 :root {
   /* Default: Light Mode (Previously) */
-  --bg: #f5f5f7;
+  --bg: #ffffff;
   --text: #1d1d1f;
   --text-mid: #424245;
+  --heading: #424245;
   --text-light: #86868b;
   --rule: rgba(0, 0, 0, 0.1);
   --primary: rgba(0, 0, 0, 0.4);
@@ -15,6 +16,16 @@
   --falling-duration: 150s;
   --blur-intensity: 10px;
   --density: 1;
+}
+
+body.dark {
+  --bg: #0a0a0a;
+  --text: #ffffff;
+  --text-mid: #ffffff; /* pure white for better readability of content/paragraphs */
+  --heading: #a1a1aa; /* grey subheadings */
+  --text-light: #a1a1aa;
+  --rule: rgba(255, 255, 255, 0.12);
+  --primary: rgba(255, 255, 255, 0.4);
 }
 
 /* ─── Reset ─────────────────────────────────── */
@@ -46,46 +57,6 @@ body {
   color: var(--bg);
 }
 
-#falling-pattern-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-  pointer-events: none;
-  overflow: hidden;
-  background-color: var(--bg);
-  transition: background-color 0.5s ease;
-  animation: fadeIn 0.4s ease-out;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-#falling-pattern {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-}
-
-#falling-pattern-overlay {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  backdrop-filter: blur(var(--blur-intensity));
-}
-
-.dark-brightness-600 {
-  filter: brightness(6);
-}
-
-body.light .dark-brightness-600 {
-  filter: brightness(1);
-}
-
 /* ─── Links ─────────────────────────────────── */
 
 a {
@@ -110,12 +81,16 @@ a:hover {
   justify-content: space-between;
   align-items: center;
   padding: 1.25rem 3rem;
-  background-color: rgba(252, 252, 252, 0.82); /* Match --bg with opacity */
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+  background-color: transparent;
   pointer-events: auto;
   transition: all 0.3s ease;
+}
+
+.brand-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.2rem;
 }
 
 .brand {
@@ -129,16 +104,32 @@ a:hover {
 
 .technical-info {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-  font-size: 10px;
+  font-size: 9px;
   font-weight: 500;
   line-height: 1.3;
-  text-align: right;
+  text-align: left;
   text-transform: uppercase;
   color: var(--text-mid);
   letter-spacing: 0.05em;
 }
 
 .technical-info span {
+  display: block;
+}
+
+.technical-info-footer {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 1.5;
+  text-align: center;
+  text-transform: uppercase;
+  color: var(--text-mid);
+  letter-spacing: 0.05em;
+  margin-top: 0.75rem;
+}
+
+.technical-info-footer span {
   display: block;
 }
 
@@ -185,7 +176,7 @@ nav.fixed.top-0 {
 .theme-toggle {
   background: none;
   border: 1px solid var(--rule);
-  color: var(--text-light);
+  color: var(--text-mid);
   font-family: var(--sans);
   font-size: 0.72rem;
   letter-spacing: 0.06em;
@@ -194,9 +185,20 @@ nav.fixed.top-0 {
   border-radius: 3px;
   cursor: pointer;
   transition: color 0.3s, border-color 0.3s;
+  margin-left: 0.5rem;
 }
 
 .theme-toggle:hover {
+  color: var(--text);
+  border-color: var(--text);
+}
+
+body.dark .theme-toggle {
+  color: var(--text-mid);
+  border-color: var(--rule);
+}
+
+body.dark .theme-toggle:hover {
   color: var(--text);
   border-color: var(--text);
 }
@@ -304,7 +306,7 @@ h2 {
   word-break: keep-all;
   overflow-wrap: normal;
   margin-bottom: 1.25rem;
-  color: var(--text-mid);
+  color: var(--heading);
   transition: color 0.5s;
 }
 
@@ -334,11 +336,11 @@ h2 {
 .essay-block h2 {
   font-size: 1.1rem;
   margin-bottom: 0.75rem;
-  color: var(--text-mid);
+  color: var(--heading);
 }
 
 .essay-block h2 em {
-  color: var(--text-mid);
+  color: var(--heading);
 }
 
 .essay-block > p {
@@ -583,5 +585,93 @@ h2 {
 @media (max-width: 768px) {
   .citation-link::before {
     display: none; /* Hide tooltips on mobile for better UX */
+  }
+}
+
+/* ─── Scroll Ruler ──────────────────────────── */
+
+.scroll-ruler {
+  position: fixed;
+  top: 50%;
+  left: 30px;
+  transform: translateY(-50%);
+  height: 60vh;
+  width: 50px;
+  z-index: 90;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  pointer-events: none;
+}
+
+.ruler-line {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--rule);
+}
+
+.scroll-ruler-ticks {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 24px;
+  background-image: repeating-linear-gradient(to bottom, var(--rule) 0, var(--rule) 1px, transparent 1px, transparent 50px);
+}
+
+.scroll-ruler-ticks-medium {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 16px;
+  background-image: repeating-linear-gradient(to bottom, var(--rule) 0, var(--rule) 1px, transparent 1px, transparent 25px);
+}
+
+.scroll-ruler-ticks-minor {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 10px;
+  background-image: repeating-linear-gradient(to bottom, var(--rule) 0, var(--rule) 1px, transparent 1px, transparent 5px);
+}
+
+.ruler-indicator {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
+  transform: translateY(-50%);
+}
+
+.ruler-marker {
+  width: 18px;
+  height: 2px;
+  background: var(--text);
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  position: relative;
+  left: -2px;
+}
+
+.ruler-percentage {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 11px;
+  color: var(--text);
+  margin-left: 6px;
+  background: var(--bg);
+  padding: 2px 4px;
+  border-radius: 2px;
+  font-weight: 500;
+  transition: background 0.5s ease, color 0.5s ease;
+}
+
+@media (max-width: 1000px) {
+  .scroll-ruler {
+    display: none;
   }
 }

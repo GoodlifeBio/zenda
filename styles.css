@@ -284,7 +284,7 @@ hr {
 /* ─── Content blocks ────────────────────────── */
 
 .block {
-  padding: 4.5rem 0;
+  padding: 3rem 0;
 }
 
 h1 {
@@ -303,7 +303,7 @@ h2 {
   line-height: 1.35;
   word-break: keep-all;
   overflow-wrap: normal;
-  margin-bottom: 2rem;
+  margin-bottom: 1.25rem;
   color: var(--text-mid);
   transition: color 0.5s;
 }
@@ -328,12 +328,12 @@ h2 {
 /* ─── Essay block ───────────────────────────── */
 
 .essay-block {
-  padding: 2.5rem 0;
+  padding: 1.5rem 0;
 }
 
 .essay-block h2 {
   font-size: 1.1rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
   color: var(--text-mid);
 }
 
@@ -349,6 +349,20 @@ h2 {
   margin-bottom: 1rem;
 }
 
+/* ─── Highlighting ───────────────────────────── */
+
+mark, .highlight {
+  background-color: rgba(255, 212, 59, 0.3); /* Subtle yellow highlight */
+  color: inherit;
+  padding: 0.1em 0.3em;
+  border-radius: 2px;
+  font-weight: 400;
+}
+
+.essay-block mark, .essay-block .highlight {
+  background-color: rgba(255, 212, 59, 0.2);
+}
+
 @media (min-width: 768px) {
   .essay-block {
     width: 120%;
@@ -359,7 +373,7 @@ h2 {
 /* ─── Items (infrastructure list) ───────────── */
 
 .item {
-  margin-top: 2.5rem;
+  margin-top: 1.5rem;
 }
 
 .item:first-of-type {
@@ -394,6 +408,7 @@ h2 {
   font-size: 0.78rem;
   color: var(--text-light);
   transition: color 0.5s;
+  text-align: center;
 }
 
 /* ─── Scroll reveal ─────────────────────────── */
@@ -436,5 +451,68 @@ h2 {
 
   .nav {
     gap: 1rem;
+  }
+}
+
+/* ─── Founders Grid (Contact Page) ───────────── */
+
+.founders-container {
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 1rem 0;
+  background: rgba(0, 0, 0, 0.01);
+}
+
+.founders-label {
+  padding: 0.8rem 1.5rem 0.5rem;
+  font-size: 0.55rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--text-light);
+  font-weight: 600;
+}
+
+.founder-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-top: 1px solid var(--rule);
+}
+
+.founder-card {
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.founder-card:first-child {
+  border-right: 1px solid var(--rule);
+}
+
+.founder-name {
+  font-family: var(--serif);
+  font-size: 1.2rem;
+  font-weight: 400;
+  margin-bottom: 0.2rem;
+  color: var(--text);
+  letter-spacing: -0.01em;
+}
+
+.founder-role {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-light);
+  font-weight: 600;
+}
+
+@media (max-width: 640px) {
+  .founder-grid {
+    grid-template-columns: 1fr;
+  }
+  .founder-card:first-child {
+    border-right: none;
+    border-bottom: 1px solid var(--rule);
   }
 }

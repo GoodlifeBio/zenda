@@ -349,20 +349,6 @@ h2 {
   margin-bottom: 1rem;
 }
 
-/* ─── Highlighting ───────────────────────────── */
-
-mark, .highlight {
-  background-color: rgba(255, 212, 59, 0.3); /* Subtle yellow highlight */
-  color: inherit;
-  padding: 0.1em 0.3em;
-  border-radius: 2px;
-  font-weight: 400;
-}
-
-.essay-block mark, .essay-block .highlight {
-  background-color: rgba(255, 212, 59, 0.2);
-}
-
 @media (min-width: 768px) {
   .essay-block {
     width: 120%;
@@ -381,18 +367,20 @@ mark, .highlight {
 }
 
 .item h3 {
-  font-family: var(--sans);
-  font-size: 0.9rem;
-  font-weight: 600;
+  font-family: var(--serif);
+  font-size: 1rem;
+  font-weight: 400;
   color: var(--text);
   margin-bottom: 0.5rem;
-  letter-spacing: -0.01em;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
   transition: color 0.5s;
 }
 
 .item p {
-  font-size: 0.95rem;
-  line-height: 1.8;
+  font-size: 0.85rem;
+  font-weight: 300;
+  line-height: 1.65;
   color: var(--text-mid);
   transition: color 0.5s;
 }
@@ -514,5 +502,86 @@ mark, .highlight {
   .founder-card:first-child {
     border-right: none;
     border-bottom: 1px solid var(--rule);
+  }
+}
+
+/* ─── Typography Emphases ───────────────────── */
+
+.emphasis-grey {
+  font-weight: 600;
+  color: var(--text-light);
+}
+
+/* ─── Citations ─────────────────────────────── */
+
+.citation-link {
+  color: inherit !important;
+  font-weight: inherit !important;
+  text-decoration: underline dotted var(--text-light);
+  text-underline-offset: 4px;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.citation-link:hover {
+  text-decoration: underline solid var(--text);
+  opacity: 1;
+}
+
+/* Tooltip Preview */
+.citation-link::before {
+  content: attr(data-preview);
+  position: absolute;
+  bottom: 140%;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  background: #fde68a; /* Canary Yellow */
+  color: #334155;      /* Dark Slate */
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 0.7rem;
+  font-weight: 500;
+  line-height: 1.4;
+  white-space: pre-wrap;
+  width: max-content;
+  max-width: 280px;
+  text-align: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1000;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  pointer-events: none;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* Tooltip Arrow */
+.citation-link::after {
+  content: "";
+  position: absolute;
+  bottom: 120%;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  border-width: 6px;
+  border-style: solid;
+  border-color: #fde68a transparent transparent transparent;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1000;
+  pointer-events: none;
+}
+
+.citation-link:hover::before,
+.citation-link:hover::after {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+@media (max-width: 768px) {
+  .citation-link::before {
+    display: none; /* Hide tooltips on mobile for better UX */
   }
 }

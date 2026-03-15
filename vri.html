@@ -14,7 +14,9 @@
     rel="stylesheet">
   <link rel="stylesheet" href="../src/styles.css">
   <style>
-    .nav a.active { color: var(--text); }
+    .nav a.active {
+      color: var(--text);
+    }
   </style>
 </head>
 
@@ -23,46 +25,108 @@
   <header class="header">
     <div class="brand-container">
       <a href="../index.html" class="brand">New Horizon</a>
+      <span class="est-tag"
+        style="font-family: var(--sans); font-size: 0.65rem; letter-spacing: 0.1em; color: var(--text-mid);text-transform: uppercase;">EST.
+        2026</span>
     </div>
     <nav class="nav">
       <a href="../index.html">Home</a>
       <a href="../about.html">About</a>
+      <a href="../vision.html">Vision</a>
       <a href="../products.html" class="active">Products</a>
       <a href="../blog.html">Blog</a>
       <a href="../contact.html">Contact</a>
-      <button class="theme-toggle" aria-label="Toggle Dark Mode">Dark</button>
+      <button class="theme-toggle" aria-label="Toggle Dark Mode">
+        <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" />
+          <line x1="12" y1="1" x2="12" y2="3" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" />
+          <line x1="12" y1="21" x2="12" y2="23" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" />
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" />
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" />
+          <line x1="1" y1="12" x2="3" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" />
+          <line x1="21" y1="12" x2="23" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" />
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" />
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" />
+        </svg>
+      </button>
     </nav>
   </header>
 
   <main>
     <section class="hero">
       <h1>Virtual Research Institute</h1>
-      <p class="hero-sub">Autonomous research and discovery at scale.</p>
+      <p class="hero-sub">Generative R&D at Scale.</p>
     </section>
 
     <section class="block essay-block">
-      <p>New Horizon Labs is building VRI, Virtual Research Institute: a multi-agent AI platform for autonomous research across complex, knowledge-intensive domains.</p>
-      
-      <p>The institute orchestrator manages a fleet of autonomous laboratories, each staffed with specialised AI scientists and other agents that review literature, generate hypotheses, design experiments, and synthesise findings across vast bodies of published knowledge. Not one AI assistant. Not one lab. An entire institute that generates laboratories on demand, staffs them with specialised AI scientists, and coordinates cross-lab research autonomously. Human researchers stay on-loop throughout. The discoveries compound continuously.</p>
-      
-      <p><em>Starting in the life sciences. Expanding wherever structured empirical reasoning applies.</em></p>
-    </section>
+      <p>New Horizon Labs is building VRI, Virtual Research Institute: a multi-agent collaborative platform for
+        autonomous research across complex, knowledge-intensive domains.</p>
 
-    <section class="block essay-block">
+      <p>The institute orchestrator manages a fleet of autonomous laboratories, each staffed with specialised AI
+        scientists and other agents that review literature, generate hypotheses, design experiments, and synthesise
+        findings across vast bodies of published knowledge (papers, patents, datasets, clinical records, experimental
+        logs, etc.). Not one AI assistant. Not one lab. An entire institute that generates laboratories on demand,
+        staffs them with specialised AI scientists, and coordinates cross-lab research autonomously. Human researchers
+        stay on-loop throughout. The discoveries compound continuously.</p>
+
       <div class="item">
         <h3>01 Access Inequality</h3>
-        <p>Building a multidisciplinary team is a luxury. Under-resourced researchers cannot afford the risk of exploring creative, unproven ideas. So, they don’t.</p>
+        <p>Building a multidisciplinary team is a luxury. Under-resourced researchers cannot afford the risk of
+          exploring creative, unproven ideas. So, they don’t.</p>
       </div>
 
       <div class="item">
         <h3>02 Literature Overload</h3>
-        <p>The volume of published research has outpaced any individual’s ability to synthesize it. Discoveries are being missed because nobody has looked. And it’s growing faster, faster than ever.</p>
+        <p>The volume of published research has outpaced any individual’s ability to synthesize it. Discoveries are
+          being missed because nobody has looked. And it’s growing faster, faster than ever.</p>
       </div>
 
       <div class="item">
         <h3>03 Slow Iteration</h3>
-        <p>From hypothesis to validation to peer review, the cycle is measured in months or years. VRI compresses this into a continuous, autonomous Human assisted loop.</p>
+        <p>From hypothesis to validation to peer review, the cycle is measured in months or years. VRI compresses this
+          into a continuous, autonomous Human assisted loop.</p>
       </div>
+    </section>
+
+    <section class="block essay-block">
+      <p>For Example, the knowledge to cure the next pandemic may already exist. It is sitting, right now, in a virology
+        paper published in India in 2017, in a protein-folding dataset from a Swiss computational lab that never got
+        widely cited, in a patent for a lipid nanoparticle delivery mechanism filed by a small biotech in Boston that
+        ran out of funding before it could do anything with it. None of these three things have ever been in the same
+        room. The researchers behind them have never spoken. And so the drug that could have been - the one that lives
+        precisely at the intersection of those three bodies of work - remains unmade, while somewhere a disease is
+        quietly becoming resistant to everything we currently have. This is the wound at the center of modern science:
+        disconnected/fragmented.</p>
+      <p>Our system maps the entire landscape of what is known - across papers, patents, datasets, clinical records,
+        experimental logs - not as a flat index of documents but as a living, structured representation of how concepts
+        relate, how mechanisms transfer across disciplines, how a principle discovered in immunology governs something
+        in materials science that nobody has noticed yet.</p>
+      <p>For example, a researcher comes to us with a problem, say, designing a targeted drug delivery vehicle that can
+        cross the blood-brain barrier without triggering an immune response - our system does not search for an existing
+        answer, because no complete answer exists. Instead, it reasons across domains simultaneously: it finds the work
+        on exosome-based delivery in neuroscience, the lipid chemistry research that governs membrane permeability, the
+        immunological literature on what makes a particle invisible to macrophages, and the engineering constraints on
+        particle size that nobody in the biology literature has fully accounted for. It draws a path - specific,
+        reasoned, with every step traceable, from where the science currently stands to where it needs to go.</p>
+      <p>Then it goes further: it writes the simulation, tests the hypothesis computationally, iterates on the molecular
+        design, and when the model is ready, it interfaces with hardware, directing synthesis (cloud labs), closing the
+        loop between the idea and the molecule. And at every step, it tells you exactly what it drew from existing work
+        and exactly where it crossed into genuinely new territory - so you always know what you own, what is prior art,
+        and what has never existed before.</p>
+      <p>This is not a faster way to do research. It is a different kind of research entirely.</p>
     </section>
   </main>
 
@@ -75,4 +139,3 @@
 </body>
 
 </html>
-

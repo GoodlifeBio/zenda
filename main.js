@@ -111,7 +111,6 @@
     var currentTheme = localStorage.getItem('theme') || 'light';
     if (currentTheme === 'dark') {
       document.body.classList.add('dark');
-      toggleBtns.forEach(function(btn) { btn.textContent = 'Light'; });
     }
 
     toggleBtns.forEach(function(btn) {
@@ -119,11 +118,9 @@
         if (document.body.classList.contains('dark')) {
           document.body.classList.remove('dark');
           localStorage.setItem('theme', 'light');
-          toggleBtns.forEach(function(b) { b.textContent = 'Dark'; });
         } else {
           document.body.classList.add('dark');
           localStorage.setItem('theme', 'dark');
-          toggleBtns.forEach(function(b) { b.textContent = 'Light'; });
         }
       });
     });

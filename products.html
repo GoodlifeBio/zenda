@@ -15,20 +15,54 @@
   <link rel="stylesheet" href="src/styles.css">
   <style>
     .nav a.active { color: var(--text); }
-    .product-list { margin-top: 4rem; }
+    .product-list { 
+      margin-top: 4rem; 
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
     .product-card { 
-      padding: 2rem; 
-      border: 1px solid rgba(255, 255, 255, 0.1); 
-      margin-bottom: 2rem; 
+      padding: 1.5rem; 
+      border: 1px solid var(--rule); 
+      border-radius: 4px;
       transition: all 0.3s ease;
       cursor: pointer;
       text-decoration: none;
-      display: block;
+      display: flex;
+      flex-direction: column;
       color: inherit;
     }
     .product-card:hover {
-      border-color: var(--accent);
-      background: rgba(255, 255, 255, 0.02);
+      border-color: var(--text-mid);
+      background: rgba(0, 0, 0, 0.02);
+    }
+    body.dark .product-card:hover {
+      background: rgba(255, 255, 255, 0.05);
+    }
+    .product-card h2 {
+      font-family: var(--sans);
+      font-size: 1.25rem;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+      margin-top: 0;
+    }
+    .product-card p {
+      font-size: 0.95rem;
+      color: var(--text-mid);
+      margin-bottom: 1.5rem;
+      flex-grow: 1;
+      line-height: 1.5;
+    }
+    .view-more {
+      font-size: 0.85rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-light);
+      transition: color 0.3s;
+    }
+    .product-card:hover .view-more {
+      color: var(--text);
     }
   </style>
 </head>
@@ -38,14 +72,19 @@
   <header class="header">
     <div class="brand-container">
       <a href="index.html" class="brand">New Horizon</a>
+      <span class="est-tag" style="font-family: var(--sans); font-size: 0.65rem; letter-spacing: 0.1em; color: var(--text-mid);text-transform: uppercase;">EST. 2026</span>
     </div>
     <nav class="nav">
       <a href="index.html">Home</a>
       <a href="about.html">About</a>
+      <a href="vision.html">Vision</a>
       <a href="products.html" class="active">Products</a>
       <a href="blog.html">Blog</a>
       <a href="contact.html">Contact</a>
-      <button class="theme-toggle" aria-label="Toggle Dark Mode">Dark</button>
+      <button class="theme-toggle" aria-label="Toggle Dark Mode">
+        <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><line x1="12" y1="1" x2="12" y2="3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><line x1="12" y1="21" x2="12" y2="23" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><line x1="1" y1="12" x2="3" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><line x1="21" y1="12" x2="23" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
     </nav>
   </header>
 
@@ -58,7 +97,7 @@
     <section class="block product-list">
       <a href="products/vri.html" class="product-card">
         <h2>Virtual Research Institute (VRI)</h2>
-        <p>A comprehensive environment for autonomous research, hypothesis generation, and experimental design at scale.</p>
+        <p>A collaborative environment to accelerate scientific research and discovery at scale.</p>
         <span class="view-more">Explore VRI →</span>
       </a>
       

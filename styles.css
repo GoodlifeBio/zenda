@@ -19,7 +19,7 @@
 }
 
 body.dark {
-  --bg: #0a0a0a;
+  --bg: #08090c;
   --text: #ffffff;
   --text-mid: #ffffff; /* pure white for better readability of content/paragraphs */
   --heading: #a1a1aa; /* grey subheadings */
@@ -50,6 +50,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   transition: background 0.5s ease, color 0.5s ease;
+  overflow-x: hidden;
 }
 
 ::selection {
@@ -100,6 +101,22 @@ a:hover {
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--text);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.logo-img {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+  mix-blend-mode: screen; /* Default dark mode: hide black background */
+  border-radius: 50%; /* in case of slight edge bleed */
+}
+
+body:not(.dark) .logo-img {
+  filter: invert(1);
+  mix-blend-mode: multiply; /* Light mode: hide white background which is now inverted */
 }
 
 .technical-info {
@@ -230,43 +247,100 @@ main {
   padding: 0 2rem;
 }
 
+#hero-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.85; /* slight dim out to blend */
+}
+
 /* ─── Hero ──────────────────────────────────── */
 
 .hero {
-  padding-top: 100px;
-  padding-bottom: 2rem;
+  padding-top: 140px;
+  padding-bottom: 3.5rem;
   text-align: center;
   position: relative;
   z-index: 2;
+  transition: all 0.4s ease;
+}
+
+/* FULL-SCREEN HERO ONLY FOR HOME PAGE */
+body.home-page .hero {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 1rem;
 }
 
 .hero h1 {
-  font-family: var(--serif);
-  font-size: clamp(1.4rem, 3.5vw, 2.4rem);
-  font-weight: 200;
-  line-height: 1.2;
-  letter-spacing: 0.15em;
-  word-break: keep-all;
-  overflow-wrap: normal;
-  margin-bottom: 1rem;
+  font-family: 'Arial Nova Light', 'Inter', 'Arial', system-ui, sans-serif !important;
+  font-size: clamp(1.6rem, 4vw, 2.8rem) !important; /* Normal smaller sizing */
+  font-weight: 100 !important;
+  line-height: 1.1;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+  margin-bottom: 0.8rem;
   max-width: 1000px;
-  margin-left: auto;
-  margin-right: auto;
   color: var(--text);
+  transition: all 1s ease-out;
+}
+
+body.home-page .hero h1 {
+  font-size: clamp(2.2rem, 5.5vw, 4.2rem) !important; /* Large sizing only for home */
+}
+
+/* Scroll bottom indicator layout (only visible if explicitly inside home-page viewport) */
+.scroll-indicator {
+  display: none; /* hidden by default on short headers */
+}
+
+body.home-page .scroll-indicator {
+  display: flex;
+  position: absolute;
+  bottom: 8%;
+  left: 50%;
+  transform: translateX(-50%);
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  opacity: 0.5;
+  animation: float-bounce 5s ease-in-out infinite;
+  z-index: 10;
+}
+
+.scroll-text {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.25em;
   text-transform: uppercase;
-  transition: all 1s ease-out, color 0.5s ease;
 }
 
-.hero h1.splitting span.char {
-  display: inline-block;
-  opacity: 0;
-  transform: translateY(16px);
-  transition: all 0.5s ease-out;
+.intro-text {
+  font-size: 1.05rem;
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  color: var(--text-mid);
+  text-transform: none !important;
+  margin-bottom: 0.8rem;
+  opacity: 0.8;
 }
 
-.hero h1.splitting.visible span.char {
-  opacity: 1;
-  transform: translateY(0);
+.scroll-line {
+  width: 1px;
+  height: 60px;
+  background: linear-gradient(to bottom, var(--text), transparent);
+}
+
+@keyframes float-bounce {
+  0%, 100% { transform: translate(-50%, 0); }
+  50% { transform: translate(-50%, -10px); }
 }
 
 .hero-sub {
@@ -282,6 +356,8 @@ main {
   transform: translateY(10px);
   filter: blur(4px);
   transition: all 1s ease-out 1.5s, color 0.5s ease;
+  position: relative;
+  z-index: 5;
 }
 
 .hero-sub.visible {
@@ -691,4 +767,69 @@ h2 {
   .scroll-ruler {
     display: none;
   }
+}
+
+h1, h2, h3, h4, h5, h6, .hero h1 {
+  font-family: 'Arial Nova Light', 'Inter', 'Arial', system-ui, sans-serif !important;
+  font-weight: 100 !important; /* Very slim, no bold */
+}
+
+/* ─── Shooting star animation (Triggered once) ─── */
+.shooting-star {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  width: 400px; /* Long tail streak */
+  height: 2px;
+  background: linear-gradient(to left, #ffffff, rgba(0, 225, 255, 0.6), transparent); /* reversed */
+  transform-origin: left center;
+  transform: rotate(38deg);
+  opacity: 0;
+  z-index: 9999;
+  pointer-events: none;
+  animation: shoot-star 10s linear 0.5s 1 forwards;
+}
+
+.shooting-star::before {
+  content: '';
+  position: absolute;
+  right: -2px; /* Set to right front edge */
+  left: auto;
+  top: -2px;
+  width: 5px;
+  height: 5px;
+  background: #ffffff;
+  border-radius: 50%;
+  box-shadow: 0 0 20px 6px rgba(0, 212, 255, 0.8), 0 0 6px #ffffff;
+}
+
+@keyframes shoot-star {
+  0% {
+    transform: translate(-10px, -10px) rotate(38deg) scaleX(0.1);
+    opacity: 0;
+    width: 0px;
+  }
+  15% {
+    opacity: 1;
+    width: 420px; /* Stretches very long rapidly */
+  }
+  85% {
+    opacity: 1;
+    width: 380px;
+  }
+  100% {
+    transform: translate(110vw, 110vh) rotate(38deg) scaleX(1);
+    opacity: 0;
+    width: 0px;
+  }
+}
+
+/* Light Mode Shooting Star Color Override */
+body:not(.dark) .shooting-star {
+  background: linear-gradient(to left, #1d1d1f, rgba(29, 29, 31, 0.4), transparent);
+}
+
+body:not(.dark) .shooting-star::before {
+  background: #1d1d1f;
+  box-shadow: 0 0 16px 4px rgba(0, 0, 0, 0.15), 0 0 4px #1d1d1f;
 }

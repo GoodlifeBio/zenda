@@ -4,30 +4,43 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>New Horizon</title>
+  <title>New Horizon<span class="brand-mark">&reg;</span></title>
   <meta name="description"
     content="New Horizon is an Applied AI Research Lab building infrastructure to accelerate scientific research and discovery at scale.">
   <link
     href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Inter:wght@100;200;300;400;500;600&display=swap"
     rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="src/styles.css">
   <style>
-    /* Hero section provides its own top padding */
+    .hero h1 {
+      font-family: 'Playfair Display', 'Georgia', serif !important;
+      font-weight: 400 !important;
+      font-size: clamp(3rem, 7vw, 5.2rem) !important;
+      line-height: 1.05 !important;
+      letter-spacing: -0.01em !important;
+      text-transform: none !important;
+    }
+
+    .hero h1 em {
+      font-family: 'Playfair Display', 'Georgia', serif !important;
+      font-style: italic !important;
+      font-weight: 400 !important;
+      font-size: 1em !important;
+      color: var(--text) !important;
+    }
   </style>
 </head>
 
 <body class="home-page">
 
-  <canvas id="hero-canvas"></canvas>
-  <div class="shooting-star"></div>
+    <video autoplay loop muted playsinline class="bg-video">
+    <source src="https://image2url.com/r2/default/videos/1773939002354-a5afabd5-300a-4304-9881-93fbda2399ea.mp4" type="video/mp4">
+  </video>
+  <div class="bg-video-overlay"></div>
 
   <header class="header">
-    <div class="brand-container">
-      <a href="index.html" class="brand"><img src="src/logo.jpg" alt="" class="logo-img">New Horizon</a>
-      <span class="est-tag"
-        style="font-family: var(--sans); font-size: 0.65rem; letter-spacing: 0.1em; color: var(--text-mid);text-transform: uppercase;">EST.
-        2026</span>
-    </div>
+    <a href="index.html" class="brand brand-corner">New Horizon<span class="brand-mark">&reg;</span></a>
     <nav class="nav">
       <a href="index.html" class="active">Home</a>
       <a href="about.html">About</a>
@@ -35,49 +48,31 @@
       <a href="products.html">Products</a>
       <a href="blog.html">Blog</a>
       <a href="contact.html">Contact</a>
-      <button class="theme-toggle" aria-label="Toggle Dark Mode">
-        <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-          <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round" />
-        </svg>
-        <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-          <circle cx="12" cy="12" r="5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-            stroke-linejoin="round" />
-          <line x1="12" y1="1" x2="12" y2="3" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-            stroke-linejoin="round" />
-          <line x1="12" y1="21" x2="12" y2="23" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-            stroke-linejoin="round" />
-          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-            stroke-linejoin="round" />
-          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round" />
-          <line x1="1" y1="12" x2="3" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-            stroke-linejoin="round" />
-          <line x1="21" y1="12" x2="23" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-            stroke-linejoin="round" />
-          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-            stroke-linejoin="round" />
-          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-            stroke-linejoin="round" />
-        </svg>
-      </button>
+      
     </nav>
   </header>
 
   <main>
 
     <section class="hero">
-      <h1>Annus Mirabilis Scientiae</h1>
-      <p class="hero-sub">The Future Is Now</p>
+      <h1>Annus Mirabilis <em>Scientiae</em></h1>
+      <p class="hero-sub">The Future is Now</p>
 
-      <!-- Scroll Indicator -->
-      <div class="scroll-indicator">
-        <span class="scroll-text">Scroll</span>
-        <div class="scroll-line"></div>
+      <div class="hero-buttons">
+        <a href="about.html" class="btn btn-outline">Learn More</a>
+        <a href="products.html" class="btn btn-primary">Begin the journey &rarr;</a>
       </div>
+
+      <a href="#methodus" class="scroll-down-btn" aria-label="Scroll to Methodus Scientifica section">
+        <span class="scroll-mouse">
+          <span class="scroll-wheel"></span>
+        </span>
+        <span class="scroll-label">scroll</span>
+      </a>
+
     </section>
 
-    <section class="block essay-block">
+    <section id="methodus" class="block essay-block">
       <h2><em>Methodus Scientifica</em></h2>
       <p>Back in 1620, <a href="https://plato.stanford.edu/entries/francis-bacon/" target="_blank" class="citation-link"
           data-preview="Stanford Encyclopedia of Philosophy: Francis Bacon">Francis Bacon</a> sat down and wrote
@@ -95,7 +90,7 @@
       <p>The human mind.</p>
     </section>
 
-    <section class="block essay-block">
+    <section id="paradox" class="block essay-block">
       <h2><em>The Paradox at the Heart of Discovery</em></h2>
       <p>Caltech researchers recently measured the speed of human thought at roughly <a
           href="https://www.caltech.edu/about/news/thinking-slowly-the-paradoxical-slowness-of-human-behavior"
@@ -125,7 +120,7 @@
       <p>We have been waiting long enough.</p>
     </section>
 
-    <section class="block essay-block">
+    <section id="science-winning" class="block essay-block">
       <h2><em>Science Is Winning. But Not Fast Enough.</em></h2>
       <p>In 1666, Sir Isaac Newton retreated to his mother's farm in Woolsthorpe to escape the plague closing Cambridge.
         He was twenty-three years old, largely unknown, and entirely alone. In eighteen months of enforced solitude, he
@@ -161,7 +156,7 @@
         everything are the ones most likely to go untested.</p>
     </section>
 
-    <section class="block essay-block">
+    <section id="new-instrument" class="block essay-block">
       <h2><em>The New Instrument</em></h2>
       <p>Bacon called his framework the <em>Novum Organum</em> - the new instrument. Every generation of science has had
         one. The telescope, the microscope, the computer, the genome sequencer, etc.</p>
@@ -174,16 +169,6 @@
   </main>
 
   <!-- SCROLL RULER -->
-  <div class="scroll-ruler">
-    <div class="scroll-ruler-ticks-minor"></div>
-    <div class="scroll-ruler-ticks-medium"></div>
-    <div class="scroll-ruler-ticks"></div>
-    <div class="ruler-line"></div>
-    <div class="ruler-indicator">
-      <div class="ruler-marker"></div>
-      <div class="ruler-percentage">0%</div>
-    </div>
-  </div>
 
   <footer class="footer">
     <span>© 2026 New Horizon Labs. All rights reserved.</span>
